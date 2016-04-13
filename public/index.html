@@ -7,8 +7,6 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="format-detection" content="telephone=no">
-    <script type="text/javascript" src="jquery-1.7.2.min.js"></script> 
-    <script type="text/javascript" src="jquery.qqFace.js"></script>
     <title>Chat</title>
     <style type="text/css">
     html,
@@ -22,12 +20,13 @@
     }
     
     #main {
-        width: 580px;
-        height: 640px;
-        margin: 0 auto;
-        border: 5px solid #112633;
-        overflow: hidden;
-        border-radius: 5px;
+           width: 580px;
+    height: 640px;
+    margin: 0 auto;
+    border: 5px solid #112633;
+    overflow: hidden;
+    border-radius: 5px;
+    background-color: rgba(238, 238, 238,1);
     }
     
     #ename {
@@ -55,12 +54,12 @@
     }
     .msg p{
           
-    display: inline-block;
+       display: inline-block;
     padding: 10px;
     border-radius: 10px;
-    background-color: #ccc;
-    color: #fff;
-  margin: 0 10px;
+    background-color: #fff;
+    color: #112633;
+    margin: 0 10px;
     }
     p.textleft span{
         float: left;
@@ -75,7 +74,7 @@
     height: 0;
     border-width: 10px 10px 10px 0;
     border-style: solid;
-    border-color: transparent #ccc transparent transparent;
+    border-color: transparent #fff transparent transparent;
     float: left;
     position: relative;
     left: -19px;
@@ -87,7 +86,7 @@
     height: 0;
     border-width: 10px 0px 10px 10px;
     border-style: solid;
-    border-color: transparent transparent transparent #ccc;
+    border-color: transparent transparent transparent #fff;
     float: right;
     position: relative;
     /* margin-right: 16px; */
@@ -156,13 +155,14 @@
     }
     
     #send textarea {
-        width: 546px;
-        height: 100px;
-        resize: none;
-        padding: 5px;
-        font-size: 18px;
-        outline: 0;
-        border: 0;
+           width: 546px;
+    height: 100px;
+    resize: none;
+    padding: 5px;
+    font-size: 18px;
+    outline: 0;
+    border: 0;
+    background-color: rgba(238, 238, 238,1);
     }
     
     #send button {
@@ -180,6 +180,25 @@
     }
     
     #send button:hover {}
+    .tool{
+        position:relative
+    }
+    span.emotion{     width: 30px;
+    height: 30px;
+    background: url(icon.gif) no-repeat 6px -22px;
+    /* padding-left: 20px; */
+    cursor: pointer;
+    margin: 0 10px;
+    display: block;
+    border-radius: 50%;
+    border: 2px solid #fff;} 
+.qqFace{margin-top:4px;background:#fff;padding:2px;border:1px #dfe6f6 solid;} 
+.qqFace table td{padding:0px;} 
+.qqFace table td img{cursor:pointer;border:1px #fff solid;} 
+.qqFace table td img:hover{border:1px #0066cc solid;} 
+
+
+
     </style>
 </head>
 
@@ -197,14 +216,31 @@
             <span id="usercount"></span>
         </div>
         <div id="send">
-            <div class="tool"></div>
+            <div class="tool">
+             <span class="emotion"></span>
+            </div>
             <textarea id="content"></textarea>
             <button id="sendBtn">Send</button>
         </div>
     </div>
 </body>
+
 <script type="text/javascript" src="socket.io.js"></script>
+<script type="text/javascript" src="jquery.min.js"></script> 
+<script type="text/javascript" src="jquery.qqFace.js"></script>
 <script type="text/javascript">
+
+$('.emotion').qqFace({ 
+        assign:'content', //给输入框赋值 
+        path:'face/'    //表情图片存放的路径 
+    }); 
+function replace_em(str){ 
+    str = str.replace(/\</g,'<;'); 
+    str = str.replace(/\>/g,'>;'); 
+    str = str.replace(/\n/g,'<;br/>；'); 
+    str = str.replace(/\[em_([0-9]*)\]/g,'<img src="face/$1.gif" border="0" />'); 
+    return str; 
+};
 var socket = io.connect(), //与服务器进行连接
     button = document.getElementById('sendBtn'),
     textarea = document.getElementById('content'),
@@ -315,7 +351,7 @@ function displayNewMsg(user, msg) {
     span.className = "name";
     var br = document.createElement('br');
     var p2 = document.createElement('p');
-    p2.textContent = msg;
+    p2.innerHTML = replace_em(msg);
     span.textContent = user;
     p.appendChild(span);
     /*p.appendChild(br);
