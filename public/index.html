@@ -60,6 +60,8 @@
     background-color: #fff;
     color: #112633;
     margin: 0 10px;
+    max-width: 475px;
+word-break: break-all;
     }
     p.textleft span{
         float: left;
@@ -138,7 +140,7 @@
         position: fixed;
         color: #112633;
         font-size: 12px;
-        left: 50%;
+        left: 40%;
         top: 10px;
     }
     
@@ -329,7 +331,7 @@ socket.on("Existed", function() {
     alert("该昵称被占用");
     init();
 })
-socket.on('system', function(nickName, userCount, type) {
+socket.on('system', function(nickName, userCount, type,users) {
 
     var msg = nickName + (type == 'login' ? ' 加入' : ' 离开');
     var p = document.createElement('p');
@@ -337,7 +339,11 @@ socket.on('system', function(nickName, userCount, type) {
     p.className = "ac";
     document.getElementById('view').appendChild(p);
 scroll(55);
-    document.getElementById('usercount').textContent = userCount + (userCount > 1 ? ' users' : ' user') + ' 在线';
+var names="";
+   users.forEach(function(user,index){
+names+=","+user;
+   })
+    document.getElementById('usercount').textContent = userCount + (userCount > 1 ? ' users' : ' user') + ' 在线'+names;
 });
 socket.on('newMsg', function(name, msg) {
 
@@ -364,9 +370,13 @@ p.className=p.className+" textright"
 else{
   p.className=p.className+" textleft"  
 }
-   
+ 
+
     document.getElementById('view').appendChild(p);
-   scroll(55);
+var allp=document.getElementsByTagName("p");
+var lastp=allp[allp.length-1];
+
+   scroll(lastp.offsetHeight+15);
 }
 function scroll(y){
    view.scrollTop=view.scrollTop+y;  

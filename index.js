@@ -16,14 +16,14 @@ io.sockets.on('connect', function(socket) {
             users.push(name);
             socket.emit('loginSuccess');
             //io.sockets.emit('foo')表示所有人都可以收到该事件。
-            io.sockets.emit('system', name, users.length, 'login'); //向所有连接到服务器的客户端发送当前登陆用户的昵称 
+            io.sockets.emit('system', name, users.length, 'login',users); //向所有连接到服务器的客户端发送当前登陆用户的昵称 
         };
     });
     socket.on('disconnect', function() {
 
         users.splice(socket.userIndex, 1);
         //socket.broadcast.emit('foo')则表示向除自己外的所有人发送该事件
-        socket.broadcast.emit('system', socket.name, users.length, 'logout');
+        socket.broadcast.emit('system', socket.name, users.length, 'logout',users);
       
     });
       socket.on('postMsg', function(msg) {
