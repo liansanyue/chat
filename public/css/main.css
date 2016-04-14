@@ -1,0 +1,232 @@
+    html,
+    body {
+        height: 100%;
+    }
+    
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    
+    #main {
+         /*主窗体*/
+        width: 580px;
+        height: 640px;
+        margin: 0 auto;
+        border: 5px solid #112633;
+        overflow: hidden;
+        border-radius: 5px;
+        background-color: rgba(238, 238, 238, 1);
+    }
+    
+    #ename {
+         /*遮罩层*/
+        position: absolute;
+        z-index: 100;
+        display: none;
+        background-color: rgba(17, 38, 51, 0.6);
+    }
+    
+    .ac {
+          /*人员进入或离开提醒*/
+        text-align: center;
+        color: red;
+        font-size: 14px;
+    }
+    
+    .msg {
+         /*消息和用户名*/
+        margin: 10px 0;
+        font-weight: 600;
+    }
+    
+    .textleft {
+        text-align: left;
+    }
+    
+    .textright {
+        text-align: right;
+    }
+    
+    .msg p {
+          /*消息*/
+        display: inline-block;
+        padding: 10px;
+        border-radius: 10px;
+        background-color: #fff;
+        color: #112633;
+        margin: 0 10px;
+        max-width: 475px;
+        word-break: break-all;
+    }
+    
+    p.textleft span {
+        /*用户名*/
+        float: left;
+    }
+    
+    p.textright span {
+        /*用户名*/
+        float: right;
+    }
+    
+    p.textleft p:before {
+         /*三角形尖尖*/
+        content: " ";
+        width: 0;
+        height: 0;
+        border-width: 10px 10px 10px 0;
+        border-style: solid;
+        border-color: transparent #fff transparent transparent;
+        float: left;
+        position: relative;
+        left: -19px;
+    }
+    
+    p.textright p:before {
+         /*三角形尖尖*/
+        content: " ";
+        width: 0;
+        height: 0;
+        border-width: 10px 0px 10px 10px;
+        border-style: solid;
+        border-color: transparent transparent transparent #fff;
+        float: right;
+        position: relative;
+        /* margin-right: 16px; */
+        left: 19px;
+    }
+    
+    .name {
+         /*用户名*/
+        display: inline-block;
+        padding: 10px;
+        border-radius: 50%;
+        background-color: #112633;
+        color: #fff;
+    }
+    
+    #ename div {
+          /*遮罩层中的输入部分*/
+        width: 300px;
+        margin: 200px auto;
+        color: #eee;
+        font-size: 20px;
+        font-weight: 600;
+    }
+    
+    #ename div input {
+           /*遮罩层中的输入框*/
+        width: 100%;
+        border-radius: 3px;
+        border: 1px solid #ccc;
+        height: 30px;
+        margin: 10px 0;
+    }
+    
+    #ename div button {
+           /*遮罩层中的按钮*/
+        width: 57px;
+        height: 28px;
+        border-radius: 3px;
+        border: 1px solid #ccc;
+        background: #fff;
+        float: right;
+    }
+    
+    #view {
+         /*聊天消息框*/
+        width: 100%;
+        height: 410px;
+        position: relative;
+        padding-top: 30px;
+        overflow: auto;
+    }
+    
+    #usercount {
+          /*在线人数*/
+        position: fixed;
+        color: #112633;
+        font-size: 12px;
+        left: 40%;
+        top: 10px;
+    }
+    
+    #send {
+          /*消息输入部分*/
+        width: 100%;
+        height: 200px;
+    }
+    
+    #send .tool {
+          /*工具栏*/
+        width: 100%;
+        height: 35px;
+        border-bottom: 5px solid #112633;
+        border-top: 5px solid #112633;
+    }
+    
+    #send textarea {
+          /*消息输入框*/
+        width: 546px;
+        height: 100px;
+        resize: none;
+        padding: 5px;
+        font-size: 18px;
+        outline: 0;
+        border: 0;
+        background-color: rgba(238, 238, 238, 1);
+    }
+    
+    #send button {
+        /*消息发送按钮*/
+        float: right;
+        margin-right: 20px;
+        height: 35px;
+        width: 75px;
+        border: 1px solid #112633;
+        background-color: #112633;
+        color: #fff;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all .2s ease-in-out;
+    }
+    
+    #send button:hover {}
+    
+    .tool {
+        position: relative
+    }
+    
+    span.emotion {
+          /*表情*/
+        width: 30px;
+        height: 30px;
+        background: url(icon.gif) no-repeat 7px -22px;
+        /* padding-left: 20px; */
+        cursor: pointer;
+        margin: 0 10px;
+        display: block;
+        border-radius: 50%;
+        border: 2px solid #fff;
+    }
+    
+    .qqFace {
+        margin-top: 4px;
+        background: #fff;
+        padding: 2px;
+        border: 1px #dfe6f6 solid;
+    }
+    
+    .qqFace table td {
+        padding: 0px;
+    }
+    
+    .qqFace table td img {
+        cursor: pointer;
+        border: 1px #fff solid;
+    }
+    
+    .qqFace table td img:hover {
+        border: 1px #0066cc solid;
+    }
