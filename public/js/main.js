@@ -8,6 +8,7 @@
         input: document.getElementById('ename').getElementsByTagName('input')[0], //遮罩层确定按钮
         view: document.getElementById("view"), //消息显示区
         userCount: document.getElementById('usercount'), //在线人数和人员列表
+        name:"",
         //遮罩层初始化
         maskInit: function() {
             this.div.style.width = document.body.offsetWidth + "px";
@@ -21,13 +22,12 @@
         eventInit: function() {
             //遮罩层点击事件
             var that = this;
-            var botton = that.div.getElementsByTagName('button')[0],
-                name = "";
+            var botton = that.div.getElementsByTagName('button')[0];
 
             botton.onclick = function() {
                 if (that.input.value.trim() != "") {
-                    name = that.input.value.trim();
-                    that.socket.emit('login', name);
+                    that.name = that.input.value.trim();
+                    that.socket.emit('login', that.name);
                 } else {
                     alert("请输入名字！");
                 }
@@ -39,8 +39,8 @@
                 if (e.keyCode === 13) {
                     if (that.input.value.trim() != "") {
 
-                        name = that.input.value.trim();
-                        that.socket.emit('login', name);
+                        that.name = that.input.value.trim();
+                        that.socket.emit('login', that.name);
                     } else {
                         alert("请输入名字！");
                     }
@@ -61,7 +61,7 @@
             /////////////////////////////////////////////
             //发送按钮点击事件
             that.sendBtn.onclick = function() {
-                if (name == "") {
+                if (that.name == "") {
                     that.maskInit();
                 } else {
                     var str = that.textarea.value
@@ -118,7 +118,7 @@
             p.appendChild(span);
             p.appendChild(p2);
             p.className = "msg";
-            if (user == name) {
+            if (user == that.name) {
                 p.className = p.className + " textright"
             } else {
                 p.className = p.className + " textleft"

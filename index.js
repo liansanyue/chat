@@ -1,6 +1,5 @@
 var express = require('express');
 var app = express();
-
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var users = [];
@@ -31,6 +30,5 @@ io.sockets.on('connect', function(socket) {
             io.sockets.emit('newMsg', socket.name, msg);
         });
 });
-
 
 http.listen(3000);
