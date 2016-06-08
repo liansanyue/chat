@@ -119,9 +119,13 @@
             p.appendChild(p2);
             p.className = "msg";
             if (user == that.name) {
-                p.className = p.className + " textright"
+                p.className = p.className + " textright";
             } else {
-                p.className = p.className + " textleft"
+                p.className = p.className + " textleft";
+                 //添加提示音
+                var audio=document.getElementById('audio');
+                audio.play();
+            //2016年6月8日15:04:02
             }
 
             that.view.appendChild(p);
