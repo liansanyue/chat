@@ -1,3 +1,9 @@
+
+###  预览链接：[Chat][1]
+
+
+  [1]:http://xwl.vgoing.net:3000/
+
 Node.js
 Node.js采用C++语言编写而成，它不是Javascript应用，而是一个Javascript的运行环境，据Node.js创始人 Ryan Dahl回忆，他最初希望采用Ruby来写Node.js，但是后来发现Ruby虚拟机的性能不能满足他的要求，后来他尝试采用V8引擎，所以选择了 C++语言。
 
